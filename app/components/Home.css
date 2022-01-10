@@ -1,0 +1,72 @@
+.contents {
+  background-color: green;
+  position: absolute;
+  width: calc(100% + 16px);
+  height: 100%;
+  margin: -8px;
+}
+
+.container {
+  position: absolute;
+  display: inline-flex;
+  width: 100%;
+}
+
+.navLeft {
+  position: static;
+  width: 90px;
+  height: 100vh;
+  background-color: #21242a;
+  text-align: center;
+}
+
+.navLeftSpacers {
+  padding-top: 33.5px;
+  padding-bottom: 33.5px;
+  font-size: 20px;
+}
+
+.active .navLeftSpacers{
+  background-color: #2eaae8;
+}
+
+.navInfo {
+  position: static;
+  width: 250px;
+  height: 100vh;
+  background-color: #282b33;
+  overflow-y: scroll;
+}
+
+.displayInfo {
+  position: static;
+  width: calc(100vw - 340px);
+  height: 100vh;
+  background-color: #2d3038;
+}
+
+
+.static_scroller {
+  overflow: scroll;
+}
+
+.helpSearch {
+    text-align: center;
+
+}
+
+input[type=text] {
+  padding: 6px;
+  border: none;
+  width: 80%;
+  margin-top: 8px;
+  font-size: 17px;
+  border-radius: 3px;
+}
+
+
+.logo h1 {
+  font-size: 70px;
+  -webkit-text-stroke: 1.5px #2eaae8;
+  -webkit-text-fill-color: transparent;
+}

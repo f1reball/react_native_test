@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tr_IO</title>
+    <script>
+      (() => {
+        if (
+          typeof process !== 'object' ||
+          (typeof process === 'object' && !process.env.START_HOT)
+        ) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = './dist/style.css';
+          // HACK: Writing the script path should be done with webpack
+          document.getElementsByTagName('head')[0].appendChild(link);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAi7DKn0_DeVKtPCRior6285AXPs0QpDxQ",
+    authDomain: "tr-io-e0dda.firebaseapp.com",
+    databaseURL: "https://tr-io-e0dda.firebaseio.com",
+    projectId: "tr-io-e0dda",
+    storageBucket: "tr-io-e0dda.appspot.com",
+    messagingSenderId: "801676538089",
+    appId: "1:801676538089:web:e2cc4a446bdb1760338078",
+    measurementId: "G-GJLJCC5L8R"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+
+
+    <div id="root"></div>
+    <script>
+      if (typeof process === 'object') {
+        const scripts = [];
+
+        if (process.env.NODE_ENV === 'development') {
+          // Dynamically insert the DLL script in development env in the
+          // renderer process
+          scripts.push('../dll/renderer.dev.dll.js');
+        }
+        if (process.env.START_HOT) {
+          // Dynamically insert the bundled app script in the renderer process
+          const port = process.env.PORT || 1212;
+          scripts.push(`http://localhost:${port}/dist/renderer.dev.js`);
+        } else {
+          scripts.push('./dist/renderer.prod.js');
+        }
+
+        if (scripts.length) {
+          document.write(
+            scripts
+              .map(script => `<script defer src="${script}"><\/script>`)
+              .join('')
+          );
+        }
+      }
+    </script>
+  </body>
+</html>
